@@ -1,0 +1,2 @@
+rootProject.name='Banderol'
+include ':app'
