@@ -29,14 +29,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mToolbar)
         mAppDrawer.create()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer,
+            .replace(
+                R.id.dataContainer,
                 ChatsFragment()
             )
             .commit()
 
     }
-
-
 
     private fun initFields() {
         mToolbar = mBinding.mainToolbar
