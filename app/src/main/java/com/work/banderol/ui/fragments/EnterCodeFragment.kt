@@ -4,10 +4,7 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.work.banderol.MainActivity
 import com.work.banderol.R
 import com.work.banderol.ui.activities.RegisterActivity
-import com.work.banderol.utilits.AUTH
-import com.work.banderol.utilits.AppTextWatcher
-import com.work.banderol.utilits.replaceActivity
-import com.work.banderol.utilits.showToast
+import com.work.banderol.utilits.*
 import kotlinx.android.synthetic.main.fragment_enter_code.*
 
 class EnterCodeFragment(val phoneNumber: String, val id: String) :
@@ -29,8 +26,21 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
         val credential = PhoneAuthProvider.getCredential(id, code)
         AUTH.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                showToast("Добро пожаловать")
-                (activity as RegisterActivity).replaceActivity(MainActivity())
+                val uid = AUTH.currentUser?.uid.toString()
+                val dateMap = mutableMapOf<String, Any>()
+                dateMap[CHILD_ID] = uid
+                dateMap[CHILD_PHONE] = phoneNumber
+                dateMap[CHILD_USERNAME] = uid
+
+                REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            showToast("Добро пожаловать")
+                            (activity as RegisterActivity).replaceActivity(MainActivity())
+                        } else {
+                            showToast(task.exception?.message.toString())
+                        }
+                    }
             } else {
                 showToast(it.exception?.message.toString())
             }

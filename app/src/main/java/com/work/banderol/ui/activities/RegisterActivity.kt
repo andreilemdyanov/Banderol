@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import com.work.banderol.R
 import com.work.banderol.databinding.ActivityRegisterBinding
 import com.work.banderol.ui.fragments.EnterPhoneNumberFragment
+import com.work.banderol.utilits.initFirebase
 import com.work.banderol.utilits.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
     }
 
     override fun onStart() {
