@@ -8,6 +8,8 @@ import com.work.banderol.databinding.ActivityMainBinding
 import com.work.banderol.ui.activities.RegisterActivity
 import com.work.banderol.ui.fragments.ChatsFragment
 import com.work.banderol.ui.objects.AppDrawer
+import com.work.banderol.utilits.replaceActivity
+import com.work.banderol.utilits.replaceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,18 +30,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        if (false) {
+        if (true) {
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            supportFragmentManager.beginTransaction()
-                .replace(
-                    R.id.dataContainer,
-                    ChatsFragment()
-                )
-                .commit()
+            replaceFragment(ChatsFragment())
         } else {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            replaceActivity(RegisterActivity())
         }
 
     }

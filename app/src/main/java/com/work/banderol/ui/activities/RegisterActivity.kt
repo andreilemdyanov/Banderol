@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import com.work.banderol.R
 import com.work.banderol.databinding.ActivityRegisterBinding
 import com.work.banderol.ui.fragments.EnterPhoneNumberFragment
+import com.work.banderol.utilits.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -23,8 +24,6 @@ class RegisterActivity : AppCompatActivity() {
         mToolbar = mBinding.registerToolbar
         setSupportActionBar(mToolbar)
         title = getString(R.string.register_title_your_phone)
-        supportFragmentManager.beginTransaction()
-            .add(R.id.registerDataContainer, EnterPhoneNumberFragment())
-            .commit()
+        replaceFragment(EnterPhoneNumberFragment())
     }
 }
