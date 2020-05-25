@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.work.banderol.databinding.ActivityMainBinding
+import com.work.banderol.model.User
 import com.work.banderol.ui.activities.RegisterActivity
 import com.work.banderol.ui.fragments.ChatsFragment
 import com.work.banderol.ui.objects.AppDrawer
-import com.work.banderol.utilits.AUTH
-import com.work.banderol.utilits.initFirebase
-import com.work.banderol.utilits.replaceActivity
-import com.work.banderol.utilits.replaceFragment
+import com.work.banderol.utilits.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,5 +43,13 @@ class MainActivity : AppCompatActivity() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar)
         initFirebase()
+        initUser()
+    }
+
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+            .addListenerForSingleValueEvent(AppValueEventListener {
+                USER = it.getValue(User::class.java) ?: User()
+            })
     }
 }
