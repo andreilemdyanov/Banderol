@@ -1,8 +1,13 @@
 package com.work.banderol
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.theartofdev.edmodo.cropper.CropImage
 import com.work.banderol.databinding.ActivityMainBinding
 import com.work.banderol.model.User
 import com.work.banderol.ui.activities.RegisterActivity
@@ -20,10 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-    }
-
-    override fun onStart() {
-        super.onStart()
+        APP_ACTIVITY = this
         initFields()
         initFunc()
     }
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUser() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
             .addListenerForSingleValueEvent(AppValueEventListener {
                 USER = it.getValue(User::class.java) ?: User()
             })

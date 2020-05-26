@@ -6,18 +6,21 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.work.banderol.MainActivity
 import com.work.banderol.R
+import com.work.banderol.utilits.APP_ACTIVITY
+import com.work.banderol.utilits.hideKeyboard
 
 open class BaseChangeFragment(layout: Int) : Fragment(layout) {
 
     override fun onStart() {
         super.onStart()
         setHasOptionsMenu(true)
-        (activity as MainActivity).mAppDrawer.disableDrawer()
+        APP_ACTIVITY.mAppDrawer.disableDrawer()
+        hideKeyboard()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        (activity as MainActivity).menuInflater.inflate(R.menu.settings_menu_confirm, menu)
+        APP_ACTIVITY.menuInflater.inflate(R.menu.settings_menu_confirm, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
