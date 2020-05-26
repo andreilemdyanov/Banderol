@@ -13,6 +13,7 @@ lateinit var USER: User
 const val NODE_USERS = "users"
 const val NODE_USERNAMES = "usernames"
 const val CHILD_ID = "id"
+const val CHILD_BIO = "bio"
 const val CHILD_PHONE = "phone"
 const val CHILD_USERNAME = "username"
 const val CHILD_FULLNAME = "fullname"
