@@ -3,13 +3,12 @@ package com.work.banderol.ui.fragments
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import com.work.banderol.MainActivity
 import com.work.banderol.R
 import com.work.banderol.utilits.*
 import kotlinx.android.synthetic.main.fragment_change_name.*
 
-class ChangeNameFragment : Fragment(R.layout.fragment_change_name) {
+class ChangeNameFragment : BaseFragment(R.layout.fragment_change_name) {
 
     override fun onResume() {
         super.onResume()

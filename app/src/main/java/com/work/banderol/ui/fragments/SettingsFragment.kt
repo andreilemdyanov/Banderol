@@ -7,14 +7,29 @@ import com.work.banderol.MainActivity
 import com.work.banderol.R
 import com.work.banderol.ui.activities.RegisterActivity
 import com.work.banderol.utilits.AUTH
+import com.work.banderol.utilits.USER
 import com.work.banderol.utilits.replaceActivity
 import com.work.banderol.utilits.replaceFragment
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
+        initFields()
+    }
+
+    private fun initFields() {
+        settings_bio.text = USER.bio
+        settings_full_name.text = USER.fullname
+        settings_phone_number.text = USER.phone
+        settings_status.text = USER.status
+        settings_username.text = USER.username
+        settings_btn_change_username.setOnClickListener {
+            replaceFragment(ChangeUsernameFragment())
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
