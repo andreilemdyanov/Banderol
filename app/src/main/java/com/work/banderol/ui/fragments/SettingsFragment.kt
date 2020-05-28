@@ -1,17 +1,12 @@
 package com.work.banderol.ui.fragments
 
-import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.net.Uri
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import com.google.firebase.storage.StorageReference
-import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import com.work.banderol.MainActivity
 import com.work.banderol.R
 import com.work.banderol.ui.activities.RegisterActivity
 import com.work.banderol.utilits.*
@@ -74,6 +69,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                         settings_user_photo.downloadAndSetImage(it)
                         showToast(getString(R.string.toast_data_update))
                         USER.photoUrl = it
+                        APP_ACTIVITY.mAppDrawer.updateHeader()
                     }
                 }
             }
