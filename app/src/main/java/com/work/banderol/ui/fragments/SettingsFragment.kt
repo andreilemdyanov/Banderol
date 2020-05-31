@@ -18,6 +18,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         super.onResume()
         setHasOptionsMenu(true)
         initFields()
+        APP_ACTIVITY.title = "Настройки"
     }
 
     private fun initFields() {
@@ -48,6 +49,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.settings_menu_exit -> {
+                AppStates.updateState(AppStates.OFFLINE)
                 AUTH.signOut()
                 APP_ACTIVITY.replaceActivity(RegisterActivity())
             }

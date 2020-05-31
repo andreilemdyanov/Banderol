@@ -7,6 +7,7 @@ import com.work.banderol.model.CommonModel
 import com.work.banderol.model.UserModel
 import com.work.banderol.utilits.*
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.fragment_single_chat.*
 import kotlinx.android.synthetic.main.toolbar_info.view.*
 
 class SingleChatFragment(private val contact: CommonModel) :
@@ -27,11 +28,23 @@ class SingleChatFragment(private val contact: CommonModel) :
         }
         mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(contact.id)
         mRefUser.addValueEventListener(mListenerInfoToolbar)
+        chat_btn_send_message.setOnClickListener {
+            val message = chat_input_message.text.toString()
+            if (message.isEmpty()) {
+                showToast("Введите сообщение")
+            } else {
+                sendMessage(message, contact.id, TYPE_TEXT) {
+                    chat_input_message.setText("")
+                }
+            }
+        }
     }
 
+
     private fun initInfoToolbar() {
+        mToolbarInfo.toolbar_chat_fullname.text =
+            if (mReceivingUser.fullname.isEmpty()) contact.fullname else mReceivingUser.fullname
         mToolbarInfo.toolbar_chat_image.downloadAndSetImage(mReceivingUser.photoUrl)
-        mToolbarInfo.toolbar_chat_fullname.text = mReceivingUser.fullname
         mToolbarInfo.toolbar_chat_status.text = mReceivingUser.state
     }
 
