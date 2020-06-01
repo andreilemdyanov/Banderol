@@ -1,5 +1,6 @@
 package com.work.banderol.ui.fragments
 
+import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import java.util.concurrent.TimeUnit
 
 
-class EnterPhoneNumberFragment : BaseFragment(R.layout.fragment_enter_phone_number) {
+class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) {
 
     private lateinit var mPhoneNumber: String
     private lateinit var mCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks

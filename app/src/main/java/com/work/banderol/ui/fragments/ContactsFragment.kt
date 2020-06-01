@@ -10,6 +10,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
 import com.work.banderol.R
 import com.work.banderol.model.CommonModel
+import com.work.banderol.ui.fragments.single_chat.SingleChatFragment
 import com.work.banderol.utilits.*
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.contact_item.view.*
@@ -66,7 +67,13 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
                         status.text = contact.state
                         photo.downloadAndSetImage(contact.photoUrl)
                     }
-                    holder.itemView.setOnClickListener { replaceFragment(SingleChatFragment(model)) }
+                    holder.itemView.setOnClickListener {
+                        replaceFragment(
+                            SingleChatFragment(
+                                model
+                            )
+                        )
+                    }
                 }
 
                 mRefUsers.addValueEventListener(mRefUsersListener)
