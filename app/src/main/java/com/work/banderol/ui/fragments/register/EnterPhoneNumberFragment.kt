@@ -1,17 +1,12 @@
-package com.work.banderol.ui.fragments
+package com.work.banderol.ui.fragments.register
 
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
-import com.work.banderol.MainActivity
 import com.work.banderol.R
-import com.work.banderol.ui.activities.RegisterActivity
-import com.work.banderol.utilits.AUTH
-import com.work.banderol.utilits.replaceActivity
-import com.work.banderol.utilits.replaceFragment
-import com.work.banderol.utilits.showToast
+import com.work.banderol.database.AUTH
+import com.work.banderol.utilits.*
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import java.util.concurrent.TimeUnit
 
@@ -28,7 +23,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
                 AUTH.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful) {
                         showToast("Добро пожаловать")
-                        (activity as RegisterActivity).replaceActivity(MainActivity())
+                        restartActivity()
                     } else {
                         showToast(it.exception?.message.toString())
                     }
@@ -40,7 +35,12 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             }
 
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {
-                replaceFragment(EnterCodeFragment(mPhoneNumber, id))
+                replaceFragment(
+                    EnterCodeFragment(
+                        mPhoneNumber,
+                        id
+                    )
+                )
             }
         }
         register_btn_next.setOnClickListener {
@@ -62,7 +62,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             mPhoneNumber,
             60,
             TimeUnit.SECONDS,
-            activity as RegisterActivity,
+            APP_ACTIVITY,
             mCallback
         )
     }

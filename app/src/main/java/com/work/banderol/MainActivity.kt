@@ -5,9 +5,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import com.work.banderol.database.AUTH
+import com.work.banderol.database.initFirebase
+import com.work.banderol.database.initUser
 import com.work.banderol.databinding.ActivityMainBinding
-import com.work.banderol.ui.activities.RegisterActivity
-import com.work.banderol.ui.fragments.ChatsFragment
+import com.work.banderol.ui.fragments.MainFragment
+import com.work.banderol.ui.fragments.register.EnterPhoneNumberFragment
 import com.work.banderol.ui.objects.AppDrawer
 import com.work.banderol.utilits.*
 import kotlinx.coroutines.CoroutineScope
@@ -46,12 +49,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
+        setSupportActionBar(mToolbar)
         if (AUTH.currentUser != null) {
-            setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            replaceFragment(ChatsFragment(), false)
+            replaceFragment(MainFragment(), false)
         } else {
-            replaceActivity(RegisterActivity())
+            replaceFragment(EnterPhoneNumberFragment(), false)
         }
     }
 

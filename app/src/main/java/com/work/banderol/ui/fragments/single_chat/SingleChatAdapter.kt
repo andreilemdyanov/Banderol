@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.work.banderol.R
 import com.work.banderol.model.CommonModel
-import com.work.banderol.utilits.CURRENT_UID
+import com.work.banderol.database.CURRENT_UID
 import com.work.banderol.utilits.asTime
 import kotlinx.android.synthetic.main.message_item.view.*
 

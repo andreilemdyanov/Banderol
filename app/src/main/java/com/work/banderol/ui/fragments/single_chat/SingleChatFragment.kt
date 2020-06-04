@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.work.banderol.R
+import com.work.banderol.database.*
 import com.work.banderol.model.CommonModel
 import com.work.banderol.model.UserModel
 import com.work.banderol.ui.fragments.BaseFragment
@@ -34,7 +35,9 @@ class SingleChatFragment(private val contact: CommonModel) :
     private fun initRecyclerView() {
         mRecyclerView = chat_recycler_view
         mAdapter = SingleChatAdapter()
-        mRefMessages = REF_DATABASE_ROOT.child(NODE_MESSAGES).child(CURRENT_UID).child(contact.id)
+        mRefMessages = REF_DATABASE_ROOT.child(
+            NODE_MESSAGES
+        ).child(CURRENT_UID).child(contact.id)
         mRecyclerView.adapter = mAdapter
         mMessagesListener = AppValueEventListener { dataSnapshot ->
             mListMessages = dataSnapshot.children.map { it.getCommonModel() }
@@ -51,14 +54,20 @@ class SingleChatFragment(private val contact: CommonModel) :
             mReceivingUser = it.getUserModel()
             initInfoToolbar()
         }
-        mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(contact.id)
+        mRefUser = REF_DATABASE_ROOT.child(
+            NODE_USERS
+        ).child(contact.id)
         mRefUser.addValueEventListener(mListenerInfoToolbar)
         chat_btn_send_message.setOnClickListener {
             val message = chat_input_message.text.toString()
             if (message.isEmpty()) {
                 showToast("Введите сообщение")
             } else {
-                sendMessage(message, contact.id, TYPE_TEXT) {
+                sendMessage(
+                    message,
+                    contact.id,
+                    TYPE_TEXT
+                ) {
                     chat_input_message.setText("")
                 }
             }
