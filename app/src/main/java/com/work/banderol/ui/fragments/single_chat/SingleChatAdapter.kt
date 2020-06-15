@@ -8,9 +8,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.work.banderol.R
-import com.work.banderol.model.CommonModel
 import com.work.banderol.database.CURRENT_UID
-import com.work.banderol.utilits.DiffUtilCallback
+import com.work.banderol.model.CommonModel
 import com.work.banderol.utilits.asTime
 import kotlinx.android.synthetic.main.message_item.view.*
 
@@ -54,20 +53,19 @@ class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatHolde
         }
     }
 
-    fun addItem(
-        item: CommonModel, toBottom: Boolean, onSuccess: () -> Unit
-    ) {
-        if (toBottom) {
-            if (!mListMessagesCache.contains(item)) {
-                mListMessagesCache.add(item)
-                notifyItemInserted(mListMessagesCache.size)
-            }
-        } else {
-            if (!mListMessagesCache.contains(item)) {
-                mListMessagesCache.add(item)
-                mListMessagesCache.sortBy { it.timeStamp.toString() }
-                notifyItemInserted(0)
-            }
+    fun addItemToBottom(item: CommonModel, onSuccess: () -> Unit) {
+        if (!mListMessagesCache.contains(item)) {
+            mListMessagesCache.add(item)
+            notifyItemInserted(mListMessagesCache.size)
+        }
+        onSuccess()
+    }
+
+    fun addItemToTop(item: CommonModel, onSuccess: () -> Unit) {
+        if (!mListMessagesCache.contains(item)) {
+            mListMessagesCache.add(item)
+            mListMessagesCache.sortBy { it.timeStamp.toString() }
+            notifyItemInserted(0)
         }
         onSuccess()
     }
