@@ -13,6 +13,7 @@ import com.work.banderol.model.CommonModel
 import com.work.banderol.model.UserModel
 import com.work.banderol.utilits.APP_ACTIVITY
 import com.work.banderol.utilits.AppValueEventListener
+import com.work.banderol.utilits.TYPE_MESSAGE_IMAGE
 import com.work.banderol.utilits.showToast
 import java.util.*
 
@@ -31,12 +32,14 @@ const val NODE_PHONES_CONTACTS = "phones_contacts"
 const val NODE_MESSAGES = "messages"
 
 const val FOLDER_PROFILE_IMAGE = "profile_image"
+const val FOLDER_MESSAGE_IMAGE = "message_image"
 const val CHILD_ID = "id"
 const val CHILD_BIO = "bio"
 const val CHILD_PHONE = "phone"
 const val CHILD_USERNAME = "username"
 const val CHILD_FULLNAME = "fullname"
 const val CHILD_PHOTO_URL = "photoUrl"
+const val CHILD_IMAGE_URL = "imageUrl"
 const val CHILD_STATE = "state"
 const val CHILD_TEXT = "text"
 const val CHILD_TYPE = "type"
@@ -205,6 +208,27 @@ fun setNameToDatabase(fullname: String) {
             APP_ACTIVITY.mAppDrawer.updateHeader()
         }
         .addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun sendMessageAsImage(receivingUserId: String, imageUrl: String, messageKey: String) {
+    val refDialogUser = "$NODE_MESSAGES/$CURRENT_UID/$receivingUserId"
+    val refDialogReceivingUser = "$NODE_MESSAGES/$receivingUserId/$CURRENT_UID"
+
+    val mapMessage = hashMapOf<String, Any>()
+    mapMessage[CHILD_FROM] = CURRENT_UID
+    mapMessage[CHILD_TYPE] = TYPE_MESSAGE_IMAGE
+    mapMessage[CHILD_ID] = messageKey
+    mapMessage[CHILD_TIMESTAMP] = ServerValue.TIMESTAMP
+    mapMessage[CHILD_IMAGE_URL] = imageUrl
+
+    val mapDialog = hashMapOf<String, Any>()
+    mapDialog["$refDialogUser/$messageKey"] = mapMessage
+    mapDialog["$refDialogReceivingUser/$messageKey"] = mapMessage
+
+    REF_DATABASE_ROOT
+        .updateChildren(mapDialog)
+        .addOnFailureListener { showToast(it.message.toString()) }
+
 }
 
 
