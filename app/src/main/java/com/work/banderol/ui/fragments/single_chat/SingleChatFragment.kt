@@ -18,6 +18,7 @@ import com.work.banderol.database.*
 import com.work.banderol.model.CommonModel
 import com.work.banderol.model.UserModel
 import com.work.banderol.ui.fragments.BaseFragment
+import com.work.banderol.ui.fragments.message_recycler_view.views.AppViewFactory
 import com.work.banderol.utilits.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_single_chat.*
@@ -127,11 +128,11 @@ class SingleChatFragment(private val contact: CommonModel) :
             val message = it.getCommonModel()
 
             if (mSmoothScrollToPosition) {
-                mAdapter.addItemToBottom(message) {
+                mAdapter.addItemToBottom(AppViewFactory.getView(message)) {
                     mRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
                 }
             } else {
-                mAdapter.addItemToTop(message) {
+                mAdapter.addItemToTop(AppViewFactory.getView(message)) {
                     mSwipeRefreshLayout.isRefreshing = false
                 }
             }
