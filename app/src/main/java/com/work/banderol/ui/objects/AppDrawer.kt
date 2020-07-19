@@ -16,8 +16,8 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
 import com.mikepenz.materialdrawer.util.DrawerImageLoader
 import com.work.banderol.R
-import com.work.banderol.ui.fragments.ContactsFragment
-import com.work.banderol.ui.fragments.SettingsFragment
+import com.work.banderol.ui.screens.ContactsFragment
+import com.work.banderol.ui.screens.SettingsFragment
 import com.work.banderol.utilits.APP_ACTIVITY
 import com.work.banderol.database.USER
 import com.work.banderol.utilits.downloadAndSetImage

@@ -1,4 +1,4 @@
-package com.work.banderol.ui.fragments.register
+package com.work.banderol.ui.screens.register
 
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseException

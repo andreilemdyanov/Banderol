@@ -9,8 +9,8 @@ import com.work.banderol.database.AUTH
 import com.work.banderol.database.initFirebase
 import com.work.banderol.database.initUser
 import com.work.banderol.databinding.ActivityMainBinding
-import com.work.banderol.ui.fragments.MainFragment
-import com.work.banderol.ui.fragments.register.EnterPhoneNumberFragment
+import com.work.banderol.ui.screens.MainFragment
+import com.work.banderol.ui.screens.register.EnterPhoneNumberFragment
 import com.work.banderol.ui.objects.AppDrawer
 import com.work.banderol.utilits.*
 import kotlinx.coroutines.CoroutineScope

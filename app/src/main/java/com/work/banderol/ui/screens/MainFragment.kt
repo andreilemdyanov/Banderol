@@ -1,4 +1,4 @@
-package com.work.banderol.ui.fragments
+package com.work.banderol.ui.screens
 
 import androidx.fragment.app.Fragment
 import com.work.banderol.R

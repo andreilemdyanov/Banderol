@@ -1,8 +1,7 @@
-package com.work.banderol.ui.fragments
+package com.work.banderol.ui.screens
 
 import com.work.banderol.R
 import com.work.banderol.database.*
-import com.work.banderol.utilits.*
 import kotlinx.android.synthetic.main.fragment_change_bio.*
 
 

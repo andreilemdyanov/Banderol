@@ -1,4 +1,4 @@
-package com.work.banderol.ui.fragments.single_chat
+package com.work.banderol.ui.screens.single_chat
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -17,8 +17,8 @@ import com.work.banderol.R
 import com.work.banderol.database.*
 import com.work.banderol.model.CommonModel
 import com.work.banderol.model.UserModel
-import com.work.banderol.ui.fragments.BaseFragment
-import com.work.banderol.ui.fragments.message_recycler_view.views.AppViewFactory
+import com.work.banderol.ui.screens.BaseFragment
+import com.work.banderol.ui.message_recycler_view.views.AppViewFactory
 import com.work.banderol.utilits.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_single_chat.*
@@ -219,9 +219,10 @@ class SingleChatFragment(private val contact: CommonModel) :
         mRefMessages.removeEventListener(mMessagesListener)
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         super.onDestroy()
         mAppVoiceRecorder.releaseRecorder()
+        mAdapter.onDestroy()
     }
 }
 

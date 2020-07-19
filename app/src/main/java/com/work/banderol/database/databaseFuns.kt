@@ -13,6 +13,7 @@ import com.work.banderol.model.UserModel
 import com.work.banderol.utilits.APP_ACTIVITY
 import com.work.banderol.utilits.AppValueEventListener
 import com.work.banderol.utilits.showToast
+import java.io.File
 import java.util.ArrayList
 
 fun initFirebase() {
@@ -37,6 +38,13 @@ inline fun putUrlToDatabase(url: String, crossinline function: () -> Unit) {
 inline fun getUrlFromStorage(path: StorageReference, crossinline function: (url: String) -> Unit) {
     path.downloadUrl
         .addOnSuccessListener { function(it.toString()) }
+        .addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun getFileFromStorage(mFile: File, fileUrl: String, function: () -> Unit) {
+    val path = REF_STORAGE_ROOT.storage.getReferenceFromUrl(fileUrl)
+    path.getFile(mFile)
+        .addOnSuccessListener { function() }
         .addOnFailureListener { showToast(it.message.toString()) }
 }
 

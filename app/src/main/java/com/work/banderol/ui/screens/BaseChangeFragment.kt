@@ -1,10 +1,9 @@
-package com.work.banderol.ui.fragments
+package com.work.banderol.ui.screens
 
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import com.work.banderol.MainActivity
 import com.work.banderol.R
 import com.work.banderol.utilits.APP_ACTIVITY
 import com.work.banderol.utilits.hideKeyboard

@@ -1,4 +1,4 @@
-package com.work.banderol.ui.fragments.message_recycler_view.views
+package com.work.banderol.ui.message_recycler_view.views
 
 data class ViewTextMessage(
     override val id: String,

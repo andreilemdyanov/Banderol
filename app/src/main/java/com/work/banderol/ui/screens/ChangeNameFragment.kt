@@ -1,4 +1,4 @@
-package com.work.banderol.ui.fragments
+package com.work.banderol.ui.screens
 
 import com.work.banderol.R
 import com.work.banderol.database.*

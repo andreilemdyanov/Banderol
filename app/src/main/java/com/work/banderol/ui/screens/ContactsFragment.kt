@@ -1,4 +1,4 @@
-package com.work.banderol.ui.fragments
+package com.work.banderol.ui.screens
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseReference
 import com.work.banderol.R
 import com.work.banderol.database.*
 import com.work.banderol.model.CommonModel
-import com.work.banderol.ui.fragments.single_chat.SingleChatFragment
+import com.work.banderol.ui.screens.single_chat.SingleChatFragment
 import com.work.banderol.utilits.*
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.contact_item.view.*

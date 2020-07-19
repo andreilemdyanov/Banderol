@@ -1,4 +1,4 @@
-package com.work.banderol.ui.fragments
+package com.work.banderol.ui.screens
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
